@@ -1,0 +1,835 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>FUNCIONES Y FUNCIONES INCORPORADAS.</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="0c996271-6639-467d-9796-792158b1703b" class="page sans"><header><h1 class="page-title">FUNCIONES Y FUNCIONES INCORPORADAS.</h1><p class="page-description"></p></header><div class="page-body"><h2 id="632cab85-573c-452e-8a47-f8a6ae643180" class="">Definición de una función.</h2><p id="943d4912-d9b7-4f7e-b1b5-d08b6f7926af" class="">En programación, una función es un conjunto de instrucciones que realizan una tarea específica y pueden ser reutilizadas en diferentes partes de un programa. En PHP, las funciones se definen con la palabra clave <mark class="highlight-yellow_background"><strong>function</strong></mark>.</p><h3 id="74368ead-3748-4613-9956-37b23aef9935" class="">Declaración y sintaxis de una función basicas.</h3><pre id="6cbf1505-2ad2-48bc-9ecc-c00d318415cd" class="code"><code>function nombreDeLaFuncion() {
+    // Cuerpo de la función
+		// Aqui van a ir todas las instrucciones que se van a realizar.
+}
+
+// Para poder accionar la función, se tiene que mandar a llamar.
+// para esto solamente tenemos que escribirla por su nombre.
+nombreDeLaFuncion();</code></pre><p id="d5746b79-4bc8-40ae-9ce8-55d65bb54a91" class="">
+</p><h3 id="54a8e584-b3ec-48a1-8854-bac8b8d1f9fe" class="">Existen dos tipos de función, las cuales son.</h3><p id="e8643ffb-d0f7-4426-90ca-883e45160e52" class=""><strong>Función sin parámetros</strong>: Este tipo de función <mark class="highlight-yellow_background"><strong>no toma ninguna información cuando es llamada</strong></mark>. Cuando una función no tiene parámetros, significa que no espera recibir ningún valor cuando es llamada. Por ejemplo:</p><pre id="265ea634-1cf5-4213-b51c-07487e6bd234" class="code"><code>// Ejemplo de una funcion sin parametros. Como podemos observar, dentro de los
+// parentesis no hay ningun valor que se va a pasar.
+function saludar() {
+    echo &quot;Hola, mundo! desde una funcion sin parametros!!&quot;;
+}
+
+saludar();
+// Llamada a la función sin parámetros, en donde tambien podemos observar cuando
+// se manda a llamar no se insertan parametros dentro de los parentesis.</code></pre><pre id="7f476798-762f-4ded-9908-9f0b5d506789" class="code"><code>//OUTPUT EN PANTALLA
+Hola, mundo! desde una funcion sin parametros!!</code></pre><p id="ad3ffa37-3407-443d-83db-c05e43567f68" class="">
+</p><p id="22c6dfb9-ea88-484e-b7a1-0ff24bdf4db6" class=""><strong>Función con parámetros</strong>: Una función con parámetros está diseñada para r<mark class="highlight-yellow_background"><strong>ecibir uno o más valores cuando es llamada</strong></mark>. Dichos valores seran personalizados a la hora de ser llamados. Aquí hay un ejemplo:</p><pre id="0161e407-9980-4fdb-8313-9da6290964a2" class="code"><code>// Ejemplo de una funcion con parametros. Como podemos observar, dentro de los
+// parentesis hay o existe un valor que va tener un efecto dentro de la función.
+function saludar_persona($nombre) {
+    echo &quot;Hola, $nombre!, esta es una funcion con parametros&quot;;
+}
+
+saludar_persona(&quot;Juan&quot;);
+// Llamada a la función con parámetros, en donde tambien podemos observar existe
+// un valor entre los parentesis. Dicho valor personaliza el
+// lugar del parametro anterior.</code></pre><p id="a938e551-1a8a-4df4-9e2b-a906ab862701" class="">En este caso, la función <strong>saludar_persona</strong> <mark class="highlight-yellow_background"><strong>espera</strong></mark> un parámetro <strong>$nombre</strong> y luego lo utiliza para personalizar el saludo. Al llamar a la función, le pasamos el valor &quot;Juan&quot;, por lo que imprimirá &quot;Hola, Juan!&quot;.</p><pre id="7467ee69-f451-4c40-afbc-52c0972d5a69" class="code"><code>// OUTPUT EN PANTALLA
+Hola, Juan!, esta es una funcion con parametros</code></pre><h3 id="65f798b7-0893-443c-9f77-45a96126ff59" class="">Parámetros y valores de retorno.</h3><ul id="48994916-9bf3-4461-8ef7-e282b2fa9e13" class="bulleted-list"><li style="list-style-type:disc">Los parámetros son variables locales a la función y se definen entre los paréntesis de la declaración de la función.</li></ul><ul id="afa2147c-1a74-4e43-aaef-2b4c58ee9114" class="bulleted-list"><li style="list-style-type:disc">Las funciones pueden devolver un valor con la palabra clave <mark class="highlight-yellow_background"><strong>return</strong></mark>.</li></ul><ul id="d320948b-6393-4b35-93b0-673fdf41bded" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-yellow_background"><strong>return </strong></mark>se utiliza para finalizar la ejecución de una función y devolver un valor. Cuando una función alcanza una declaración return, la función se detiene y el valor especificado después de return se devuelve al lugar desde donde se llamó a la función.</li></ul><pre id="24f61ba8-cce1-476a-999e-bc23b0ce7729" class="code"><code>// Definimos una funcion que va a obtener dos parametros
+// Parametro 1.- a.
+// Parametro 2.- b.
+function sumar($a, $b) {
+		// La función va a tener la instruccion de realizar una operacion basica.
+		// Va a sumar los dos paramertos obtenidos.
+		// a + b
+    return $a + $b;
+		// Terminada la ejecucion de la operacion, vamos retornar el valor obtenido.
+		// Resultado de a + b.
+}
+
+// Se manda a llamar a la funcion para activarla.
+$resultado = sumar(2, 3);</code></pre><pre id="37c0b5b9-a88f-407f-b412-621ebae8c8f1" class="code"><code>// OUTPUT EN PANTALLA
+
+// Interpretacion de la funcion &quot;sumar&quot; (a + b).
+
+// Instruccion, suma -------&gt; a + b
+	// Termina de ejecutar la funcion y retorna los valores de a y b.
+
+// Cuando se manda a llamar a la funcion por su nombre &quot;sumar&quot;.
+	// Personalizacion de valores 2 + 3
+
+// Impresion del resutlado -&gt; 5
+	// Resultado en pantalla:
+5</code></pre><h3 id="6d0ebb4d-b0ba-472b-a5a8-f912878e457a" class="">Variables locales:</h3><p id="22e3e872-028a-4c91-a9a2-91a0384b6403" class="">Las variables locales son aquellas que se <mark class="highlight-yellow_background"><strong>definen dentro de una función</strong></mark> <mark class="highlight-yellow_background"><strong>y solo son accesibles dentro de esa función</strong></mark>. No pueden ser utilizadas fuera de la función ni son visibles para otras funciones.. Ejemplo:</p><pre id="12a8e177-f70c-4621-9f1d-00b867295ab8" class="code"><code>// Declaramos una funcion sin parametros que se llamara &quot;Saludar&quot;
+function saludar() {
+		// Dentro la función se a declarado una variable que va a contener
+		// una cadena de texto. 
+    $mensaje = &quot;¡Hola, mundo!&quot;;
+		// Pasamos a realizar una impresion en pantalla de la cadena de texto.
+    echo $mensaje;
+}
+
+// Se manda a llamar a la función para que realice su instrucción. En este caso
+// como no tiene parametros no espera un valor para realizar una accion. Y 
+// ejecutara por defecto la instruccion que tiene dentro de ella.
+saludar();
+
+// Si intentamos acceder a la variable desde afuera de la función, se nos va
+// a regresar un mensaje de error, esto por que el programa al intentar
+// encontrarla y no hacerlo, nos mostrara un mensaje de &quot;variable no definida&quot; </code></pre><h3 id="bfdaf83d-05c8-42ce-9510-9f201e220b66" class="">Variables globales:</h3><p id="5bdad05f-f9b2-4442-95c5-eab1e496cfad" class="">Las variables globales son aquellas que <mark class="highlight-yellow_background"><strong>se definen fuera de cualquier función</strong></mark> y están disponibles en todo el script. Sin embargo, para acceder a una variable global dentro de una función, <mark class="highlight-yellow_background"><strong>necesitas utilizar la palabra clave global.</strong></mark></p><pre id="62856892-24cb-4ef1-a090-514aa7627b0f" class="code"><code>// Se define una variable que va a contener una cadena de texto.
+$mensajeGlobal = &quot;¡Hola, mundo!, soy una variable global&quot;;
+
+// Se crea una variable con el nombre &quot;Saludar&quot; la cual no va a tener
+// ningun parametro.
+function saludar() {
+		// Se accesa desde adentro a la variable global con la palabra reservada
+		// &quot;global&quot;
+    global $mensajeGlobal;
+		// Seguido pasamos a imprimir en pantalla lo que se encuentre dentro de la
+		// variable &quot;mensajeGlobal&quot;
+    echo $mensajeGlobal;
+}
+
+// Se manda a llamar a la funcion para que realize su accion.
+// Como es una función sin parametros, no esta esperando ningun valor
+// para realizar una tarea en especifico, por lo que se pasara a ejecutar
+// las instrucciones que tenga dentro de ella.
+saludar();</code></pre><pre id="60f1c7d5-8044-4e18-acc5-26fb0776a1ce" class="code"><code>// OUTPUT EN PANTALLA 
+¡Hola, mundo!, soy una variable global</code></pre><blockquote id="daddf9dc-3616-4a74-b85d-75799389f034" class=""><em>La palabra reservada &quot;</em><mark class="highlight-yellow_background"><strong><em>global</em></strong></mark><em>&quot; en PHP se utiliza para </em><mark class="highlight-yellow_background"><strong><em>acceder a variables globales desde dentro de una función</em></strong></mark><em>. Cuando declaras una variable fuera de una función, esa variable tiene un ámbito global y no puede ser accedida directamente desde dentro de la función. Para superar esto, puedes usar la palabra reservada &quot;global&quot; para indicar que estás haciendo referencia a la variable global.</em></blockquote><p id="39ea6535-7a90-484d-8809-e4bf350076f7" class="">
+</p><h3 id="7a7bec79-8a1b-4d30-9380-78da0d8edb69" class="">Funciones predefinidas isset &amp; empty.</h3><p id="bd238f36-9331-4dd4-8cd5-e312c4498841" class="">Son funciones en PHP que se utilizan para<mark class="highlight-yellow_background"><strong> verificar si una variable está definida y si está vacía</strong></mark>, respectivamente.</p><p id="a3d3bf78-62a4-4d44-9342-7fd4cc610853" class=""><strong>isset.</strong></p><ul id="a2fe1191-c692-4ef2-81ca-b6de93a76c6d" class="bulleted-list"><li style="list-style-type:disc">Se utiliza para comprobar si una variable está definida, es decir, si existe y no es nula.</li></ul><ul id="b0d33c4b-5b59-4683-b600-950f65b6cd4f" class="bulleted-list"><li style="list-style-type:disc">Devuelve true si la variable existe y tiene un valor distinto de null, de lo contrario, devuelve false.</li></ul><h3 id="38817f24-8883-4f0a-967e-8192ac6b182e" class="">Puede ser util.</h3><p id="7286024b-1f6a-48f8-bdae-fe94f59b05b0" class=""><strong>Verificar la existencia de variables: </strong>Esto es útil para asegurarte de que una variable exista antes de intentar utilizarla. Evita errores relacionados con variables no definidas.</p><pre id="dec7dd30-cd12-429b-bdac-a8c66fa8618c" class="code"><code>$nombre = true;
+
+// Verificamos si la variable existe o esta definida con una condición.
+// Si la variable nombre, existe, entonces:
+if (isset($nombre)) {
+		// Imprime en pantalla el siguiente mensaje.
+    echo &quot;La variable \$nombre está definida.&quot;;
+} else {
+		// De no cumplir, imprime en pantalla el siguiente mensaje.
+    echo &quot;La variable \$nombre no está definida.&quot;;
+}
+
+// Podemos decir que una variable definida, es cuando tiene un valor asignado.
+// No importa si es de tipo numerico, cadena de texto, funcion, etc.
+
+//Ejemplos:
+//$nombre = false; -------------------&gt; Variable definida.
+//nombre = 0; ------------------------&gt; Variable definida.
+//nombre =&quot;Cadena de texto&quot;; ---------&gt; Variable definida.
+//nombre; ----------------------------&gt; Variable NO definida.</code></pre><p id="66756f12-ad20-4356-86f7-e5e822f3129f" class="">
+</p><p id="b1e43359-8aa2-41a9-a508-4cd48d46efe9" class=""><strong>Manejo de parámetros en formularios:</strong></p><p id="f1e5e2cb-77bb-4289-bc0b-155e146397ea" class="">Aquí, <code><strong>isset</strong></code> se utiliza para verificar si el parámetro &#x27;nombre&#x27; ha sido enviado a través de un formulario antes de intentar usarlo.</p><pre id="6471f7f3-2677-4dbb-b4d6-998629c33287" class="code"><code>$nombre = isset($_POST[&#x27;nombre&#x27;]) ? $_POST[&#x27;nombre&#x27;] : &#x27;Valor Predeterminado&#x27;;</code></pre><blockquote id="c37a6296-9971-4dbf-b4aa-20a9b18e874b" class=""><strong><em>Si la condición es verdadera</em></strong><em>, la variable toma el valor después del </em><em><code><strong>?</strong></code></em><em>.</em><p id="7fd032a7-f103-4acb-bc26-cc7d35b7b7a7" class=""><strong><em>Si la condición es falsa</em></strong><em>, la variable toma el valor después de </em><em><code><strong>:</strong></code></em><em>.</em></p></blockquote><p id="bc251457-6313-4269-87f5-48f682113a6d" class="">
+</p><p id="5863bb27-ac46-4f30-a735-a05d20dd3dbe" class=""><strong>Comprobación de elementos en matrices o arreglos asociativos: </strong></p><pre id="fa2564eb-3d6b-4b29-968c-c920a20cce88" class="code"><code>// Creamos un arreglo asociativo. Asociativo por que tiene una clave - valor
+// El arreglo tiene la cantidad de 2 elementos con sus respectivas clases.
+	// Valor 1
+	// Valor 2
+$miArray = array(&#x27;clave1&#x27; =&gt; &#x27;valor1&#x27;, &#x27;clave2&#x27; =&gt; &#x27;valor2&#x27;);
+// Realizamos la verificacion de la existencia de alguna clase que queramos.
+// Si, el ID o clave con asignación &quot;clave1&quot; es verdadera / existe dentro de
+// mi arreglo asociado llamado &quot;miArray&quot; realiza lo sigueinte.
+if (isset($miArray[&#x27;clave1&#x27;])) {
+		// Si la condición se cumple como verdadera, entonces:
+    echo &quot;La clave &#x27;clave1&#x27; existe en el array.&quot;;
+} else {
+		// Si la condición no se cumple como verdadera, entonces:
+    echo &quot;La clave &#x27;clave1&#x27; no existe en el array.&quot;;
+}</code></pre><p id="81379d78-ae58-4046-9fe9-47fe96bc1946" class="">
+</p><p id="7ce59860-c1f2-4d20-a70d-6284db196464" class=""><strong>Verificación de variables de sesión:</strong></p><pre id="15969fee-cbc9-40f2-9fc7-c1b098a6fe24" class="code"><code>session_start();
+// Session_star Es una función en PHP que se utiliza para
+// iniciar o reanudar una sesión.
+
+// Verificamos si el ID del usuario existe en nuestra base de datos.
+if (isset($_SESSION[&#x27;usuario_id&#x27;])) {
+		// Si el ID del usuario, existe, entonces
+    echo &quot;El usuario está autenticado.&quot;;
+} else {
+		// Si NO existe el ID del usuario, entonces
+    echo &quot;El usuario no está autenticado.&quot;;
+}</code></pre><p id="09bb8afa-36b7-4c4e-97b5-7908e544a77c" class="">
+</p><p id="1db74081-d528-4946-9626-5df0b847da58" class=""><strong>empty.</strong></p><ul id="8011b7e4-b7bb-45cb-ba14-1f3574822ccc" class="bulleted-list"><li style="list-style-type:disc"><code><strong>empty</strong></code> se utiliza para comprobar si una variable está vacía. Una variable se considera vacía si no está definida, es <code><strong>null</strong></code>, o su valor es igual a cero o una cadena vacía.</li></ul><ul id="0df67c84-9b7c-4792-9a3e-1d14994e5046" class="bulleted-list"><li style="list-style-type:disc">Devuelve <code><strong>true</strong></code> si la variable está vacía, de lo contrario, devuelve <code><strong>false</strong></code>.</li></ul><pre id="444946be-d79f-48df-8771-c6ec4afd934b" class="code"><code>// Declaramos / definimos una variable a la que le asignaremos el valor de 0.
+$edad = 0;
+
+// Verificamos si la variable esta vacia o o no, con una condicion
+// Si, la variable edad contiene algo, entonces.
+if (empty($edad)) {
+		// Imprime en la pantalla el siguiente mensaje, si la variable contiene algo.
+    echo &quot;La variable está vacía o tiene un valor igual a cero.&quot;;
+} else {
+		// Imprime en la pantalla el siguiente mensaje, si la variable es nula.
+    echo &quot;La variable no está vacía.&quot;;
+}
+
+// Hay que recordar que, una variable nula, en programación,
+// generalmente se refiere a una variable que no tiene un valor
+// asignado o que está vacía.
+
+// $edad = 1; ---------------------------&gt; No es una variable nula.
+// $edad = &quot;Hola mundo&quot;; ----------------&gt; No es una variable nula.
+// $edad = function miFuncion(); --------&gt; No es una variable nula.
+// $edad = null; ------------------------&gt; Es una variable nula.
+// $edad; -------------------------------&gt; Es una variable nula.</code></pre><p id="80d0a22f-57b5-4f09-aa8c-3a25cad248f6" class="">
+</p><h2 id="401dc47b-7bf9-4a54-8c40-066923d54148" class="">Funciones incorporadas..</h2><p id="353b2528-1624-42fe-8201-9784950cfd82" class="">Las funciones incorporadas en PHP son funciones que vienen predefinidas en el lenguaje y están disponibles para su uso sin necesidad de realizar ninguna importación o inclusión adicional. Estas funciones cubren una amplia variedad de tareas y facilitan la programación en PHP al proporcionar funcionalidades comunes.</p><p id="f7e822ea-2468-472c-a2b2-eeb063ef562d" class="">Algunas categorías comunes de funciones incorporadas en PHP incluyen:</p><ol type="1" id="7e24e1c2-4e75-47ba-850f-cd1b18304d35" class="numbered-list" start="1"><li><strong>Funciones de cadenas:</strong> Manipulación y manipulación de cadenas de texto (<code><strong>strlen</strong></code>, <code><strong>strpos</strong></code>, <code><strong>substr</strong></code>, etc.).</li></ol><ol type="1" id="eaba54b8-3c3b-4074-9c89-6455b4c15a35" class="numbered-list" start="2"><li><strong>Funciones matemáticas:</strong> Operaciones matemáticas básicas y avanzadas (<code><strong>sqrt</strong></code>, <code><strong>rand</strong></code>, <code><strong>round</strong></code>, etc.).</li></ol><ol type="1" id="a930a251-900b-48b6-bfbe-2c612a1ad155" class="numbered-list" start="3"><li><strong>Funciones de fecha y hora:</strong> Manipulación de fechas y horas (<code><strong>date</strong></code>, <code><strong>strtotime</strong></code>, <code><strong>time</strong></code>, etc.).</li></ol><ol type="1" id="fc21656b-ec5e-4f37-805f-c7b26d4180ac" class="numbered-list" start="4"><li><strong>Funciones de arrays:</strong> Operaciones en arrays (<code><strong>count</strong></code>, <code><strong>array_push</strong></code>, <code><strong>array_merge</strong></code>, etc.).</li></ol><ol type="1" id="413d8ab6-d76c-4cb6-ae34-52ebd8ba8bb0" class="numbered-list" start="5"><li><strong>Funciones de archivos:</strong> Lectura y escritura de archivos (<code><strong>file_get_contents</strong></code>, <code><strong>file_put_contents</strong></code>, etc.).</li></ol><ol type="1" id="194c443d-79f7-4027-b10b-3082d197ae40" class="numbered-list" start="6"><li><strong>Funciones de formulario y entrada de usuario:</strong> Manipulación de datos del formulario y entrada del usuario (<code><strong>isset</strong></code>, <code><strong>empty</strong></code>, <code><strong>htmlspecialchars</strong></code>, etc.).</li></ol><ol type="1" id="af110e41-9c63-404d-8ab5-648831c7bff2" class="numbered-list" start="7"><li><mark class="highlight-yellow_background"><strong>Funciones de base de datos:</strong></mark><mark class="highlight-yellow_background"> Interacción con bases de datos usando extensiones como MySQLi y PDO (</mark><mark class="highlight-yellow_background"><code><strong>mysqli_query</strong></code></mark><mark class="highlight-yellow_background">, </mark><mark class="highlight-yellow_background"><code><strong>mysqli_fetch_assoc</strong></code></mark><mark class="highlight-yellow_background">, </mark><mark class="highlight-yellow_background"><code><strong>PDO::query</strong></code></mark><mark class="highlight-yellow_background">, etc.).</mark></li></ol><ol type="1" id="d97c8c42-b02f-4137-a55d-d530f48a73ad" class="numbered-list" start="8"><li><strong>Funciones de salida:</strong> Envío de datos al navegador (<code><strong>echo</strong></code>, <code><strong>print</strong></code>, <code><strong>var_dump</strong></code>, etc.).</li></ol><ol type="1" id="335a1e9c-0124-463f-a239-ebf635a0ccac" class="numbered-list" start="9"><li><strong>Funciones de red:</strong> Interacción con protocolos de red (<code><strong>file_get_contents</strong></code> para leer desde URL, <code><strong>curl</strong></code> para solicitudes HTTP avanzadas, etc.).</li></ol><p id="9436bd64-c12b-44fa-a56b-98a6cc11abe5" class="">Estas son solo algunas categorías y ejemplos.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
